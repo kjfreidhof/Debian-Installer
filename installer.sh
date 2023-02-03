@@ -3,7 +3,7 @@ skip()
 {
 
         echo "This Process Will continue : $1"
-        continue
+        return
 
 
 
