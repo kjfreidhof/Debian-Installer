@@ -1,4 +1,19 @@
 #!/bin/bash
+skip()
+{
+
+        echo "This Process Will continue : $1"
+        continue
+
+
+
+}
+
+
+
+
+
+
 gnome="sudo apt install gnome-core -y"
 xfce="sudo apt install xfce4 -y"
 plasma="sudo apt install kde-plasma-desktop -y"
@@ -13,7 +28,6 @@ upd="sudo apt update -y"
 kali="sudo apt-get install kali-linux-headless -y"
 auto="sudo apt-get autoremove --purge"
 clean="sudo apt clean"
-skip="continue"
 x="exit"
 pip="sudo apt install python3-pip"
 hold="sudo apt-mark hold firefox-esr"
@@ -45,6 +59,8 @@ $upd
 $kali
 $clean
 
+
+
 echo "What Desktop Environment do you want to install?[|1|2|3|]"
 echo "1, Gnome"
 echo "2, Plasma"
@@ -57,19 +73,21 @@ if [ "$CHOICE" = 1 ]; then
         sleep 3
         $upd
         $gnome
-        $skip
+        $skip_str
 
 elif [ "$CHOICE" = 2 ]; then
         echo "Installing Plasma"
         sleep 3
         $upd
         $plasma
+        $skip_str
 
 elif [ "$CHOICE" = 3 ]; then 
         echo "Installing xfce"
         sleep 3
         $upd
         $xfce
+        $skip_str
 
 else
 
@@ -93,22 +111,22 @@ if [ "$CHOICE" = 1 ]; then
         echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
         $upd
         $brave
-        $skip
+        $skip_str
 elif [ "$CHOICE" = 2 ]; then
         echo "Installing Firefox"
         sleep 3
         $firefox
-        $skip
+        $skip_str
 elif [ "$CHOICE" = 3 ]; then
         echo "Installing Chromium"
         sleep 3
         $chromium
-        $skip
+        $skip_str
 elif [ "$CHOICE" = 4 ]; then
         echo "Installing qutebrowser"
         sleep 3
         $qt
-        $skip
+        $skip_str
 else
         echo "Exitiing"
         sleep 3
@@ -127,20 +145,20 @@ if [ "$CHOICE" = 1 ]; then
         echo "Installing vlc"
         $upd
         $vlc
-        $skip
+        $skip_str
 
 elif [ "$CHOICE" = 2 ]; then
         echo "Installing mpv"
         $upd
         $mpv
-        $skip
+        $skip_str
 
 elif [ "$CHOICE" = 3 ]; then
         echo "Installing both"
         $upd
         $mpv
         $vlc
-        $skip
+        $skip_str
 
 else
         echo "Exiting"
@@ -151,7 +169,7 @@ reboot="sudo reboot"
 
 echo "Time to reboot into the new environment Do you want to Reboot now or Reboot Later?
 Press Enter to Reboot now or ctrl c to cancel"
-read -rp
+read -r
 $reboot
 
 
