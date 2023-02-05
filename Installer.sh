@@ -26,7 +26,7 @@ hold="sudo apt-mark hold firefox-esr"
 holdchromium="sudo apt-mark hold chromium"
 holdephiphany="sudo apt-mark hold epiphany-browser"
 t="sudo apt install gnome-tweaks -y"
-
+rr="sudo apt remmove firefox-esr"
 echo "Holding firefox"
 $hold
 
@@ -35,6 +35,26 @@ $holdchromium
 
 echo "Holding ephiphany"
 $holdephiphany
+
+
+echo "Installing Brave"
+sleep 3
+sudo curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
+
+echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg] https://brave-browser-apt-release.s3.brave.com/ stable main"|sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
+$upd
+
+$brave
+
+echo "Installing Qutebrowser"
+sleep 3
+$qt
+
+echo "Removing firefox"
+sleep 3
+$rr
+
 
 
 echo "Installing terminator"
